@@ -1,0 +1,322 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background: linear-gradient(135deg, #171b3c, #1f2235);
+    font-family: 'Poppins', sans-serif;
+    color: whitesmoke;
+    padding: 2em;
+}
+.btn {
+    
+    --color: #560bad;
+    font-family: inherit;
+    display: inline-block;
+    width: 8em;
+    height: 2.6em;
+    line-height: 2.5em;
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color .5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: var(--color);
+}
+
+.btn:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+.btn:hover {
+    color: #fff;
+}
+
+.btn:before {
+    top: 100%;
+    left: 100%;
+    transition: all .7s;
+}
+
+.btn:hover:before {
+    top: -30px;
+    left: -30px;
+}
+
+.btn:active:before {
+    background: #3a0ca3;
+    transition: background 0s;
+}
+.container {
+    width: 90%;
+	max-width: 1200px;
+	margin: auto;
+}
+
+.container .btn-menu,
+.logo {
+    float: left;
+    line-height: 100px;
+}
+
+.container .btn-menu label {
+    color: #fff;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.logo h1 {
+    color: #fff;
+    font-weight: 400;
+    font-size: 22px;
+    margin-left: 10px;
+}
+
+.container .menu {
+    float: right;
+    line-height: 100px;
+}
+
+.container .menu a {
+    display: inline-block;
+    padding: 15px;
+    line-height: normal;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.container .menu a:hover {
+    border-bottom: 2px solid #c7c7c7;
+    padding-bottom: 5px;
+}
+
+#btn-menu {
+    display: none;
+}
+
+.container-menu {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    transition: all 500ms ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+#btn-menu:checked~.container-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cont-menu {
+    width: 100%;
+    max-width: 250px;
+    background: #1c1c1c;
+    height: 100vh;
+    position: relative;
+    transition: all 500ms ease;
+    transform: translateX(-100%);
+}
+
+#btn-menu:checked~.container-menu .cont-menu {
+    transform: translateX(0%);
+}
+
+.cont-menu nav {
+    transform: translateY(15%);
+}
+
+.cont-menu nav a {
+    display: block;
+    text-decoration: none;
+    padding: 20px;
+    color: #c7c7c7;
+    border-left: 5px solid transparent;
+    transition: all 400ms ease;
+}
+
+.cont-menu nav a:hover {
+    border-left: 5px solid #c7c7c7;
+    background: #1f1f1f;
+}
+
+.cont-menu label {
+    position: absolute;
+    right: 5px;
+    top: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 18px;
+}
+   /* Estilos de la tabla */
+table {
+    width: 60%;
+    margin: 50px auto;
+    border-collapse: collapse;
+    background: #1f1f3c;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Títulos y encabezados */
+table h1 {
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+    padding: 20px 0;
+}
+
+/* Celdas */
+table td {
+    padding: 15px 20px;
+    color: #fff;
+    font-size: 16px;
+}
+
+/* Estilos para etiquetas */
+table label {
+    font-weight: bold;
+    color: #c7c7c7;
+}
+
+/* Campos de entrada */
+table input[type="text"],
+table input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #2b2b5e;
+    color: #fff;
+    font-size: 14px;
+}
+
+table input:focus {
+    outline: none;
+    border: 2px solid #560bad;
+    box-shadow: 0 0 10px #560bad;
+    transition: all 0.3s ease-in-out;
+}
+
+
+/* Animaciones */
+table tr {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+    /* Estilos del botón */
+    .btn {
+        /* Estilos ya existentes */
+        --color: #560bad;
+        font-family: inherit;
+        display: inline-block;
+        width: 12em;
+        height: 2.6em;
+        line-height: 2.5em;
+        margin: 20px;
+        position: relative;
+        overflow: hidden;
+        border: 2px solid var(--color);
+        transition: color .5s;
+        z-index: 1;
+        font-size: 17px;
+        border-radius: 6px;
+        font-weight: 500;
+        color: var(--color);
+
+        /* Ajustes */
+        font-size: 20px; /* Tamaño de la fuente */
+        padding: 2px; /* Espaciado interno */
+    }
+    .btn:before {
+        content: "";
+        position: absolute;
+        background: var(--color);
+        width: 300%;
+        height: 300%;
+        top: 100%;
+        left: 100%;
+        transition: all 0.7s;
+        border-radius: 50%;
+        z-index: -1;
+    }
+    
+    .btn:hover {
+        color: white;
+    }
+    
+    .btn:hover:before {
+        top: -30%;
+        left: -30%;
+    }
+    
+    /* Navegación */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1em;
+        background: #1f2235;
+        border-radius: 8px;
+        margin-bottom: 2em;
+    }
+    
+    .navbar a {
+        color: white;
+        text-decoration: none;
+        font-size: 1em;
+        margin-right: 2em;
+        transition: all 0.3s;
+    }
+    
+    .navbar a:hover {
+        color: #c7c7c7;
+        border-bottom: 2px solid #c7c7c7;
+        padding-bottom: 5px;
+    }
+    
+    /* Estilos para mensajes de error */
+    .error {
+        border-color: red;
+        animation: shake 0.5s ease;
+    }
+    
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        20%, 60% { transform: translateX(-10px); }
+        40%, 80% { transform: translateX(10px); }
+    }
+    

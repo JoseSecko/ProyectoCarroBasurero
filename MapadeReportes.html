@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Calor de Reportes</title>
+    <link rel="stylesheet" href="MapadeReportes.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrqR5FZpdiLo58twFvoBLBjsN3dH-3RqQ&libraries=visualization"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Mapa de Calor de Reportes</h1>
+        </header>
+        <main>
+            <div id="map" class="map-container"></div>
+        </main>
+        <footer>
+            <p>© 2024 Sistema de Gestión de Recolección de Basura</p>
+        </footer>
+    </div>
+
+    <script>
+        function initMap() {
+            // Coordenadas del centro del mapa (ej. Cochabamba)
+            const centerCoords = { lat: -17.3936, lng: -66.1579 };
+            
+            // Inicializar el mapa
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: centerCoords,
+                zoom: 13,  // Nivel de zoom
+            });
+            
+            // Datos de ejemplo para la capa de calor
+            const heatmapData = [
+                new google.maps.LatLng(-17.3936, -66.1579),
+                new google.maps.LatLng(-17.3925, -66.1650),
+                new google.maps.LatLng(-17.4000, -66.1600),
+                // Puedes agregar más coordenadas aquí
+            ];
+
+            // Crear la capa de calor
+            const heatmap = new google.maps.visualization.HeatmapLayer({
+                data: heatmapData,
+                radius: 30  // Radio del calor
+            });
+
+            // Mostrar la capa de calor en el mapa
+            heatmap.setMap(map);
+        }
+
+        // Llama a la función initMap cuando la página cargue
+        window.onload = initMap;
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,94 @@
+<html>
+<head>
+    <title>Zona</title>
+	<link rel="stylesheet" href="stylemapa.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
+</head>
+
+<body >
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <header class="header">
+		<div class="container">
+		<div class="btn-menu">
+			<label for="btn-menu">
+                <h2>
+                    &#9776
+                </h2>
+                </label>
+		</div>
+			
+			<nav class="menu">
+				<a href="index.html">Inicio</a>
+				<a href="#">visualizar</a>
+				<a href="#">Monitorear</a>
+				<a href="#">consultar</a>
+			</nav>
+		</div>
+	</header>
+	<div class="capa"></div>
+<!--	--------------->
+<input type="checkbox" id="btn-menu">
+<div class="container-menu">
+	<div class="cont-menu">
+		<nav>
+			<a href="#">Presentacion</a>
+			<a href="#">Servicios</a>
+			<a href="mapa2.html">Mapeo</a>
+			<a href="mapa.html">Rutas</a>
+			<a href="#">registro</a>
+			<a href="#">consultas</a>
+		</nav>
+		<label for="btn-menu">&#10006</label>
+	</div>
+</div>
+
+
+    
+    <table>
+        <tr>
+            <td>
+                <div class="logo">
+                    <h1>Bienvenidos</h1>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div>
+                    <h4>Llene todos los datos por favor.</h4>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="map-canvas" style="height: 400px; width: 700px"></div>
+            </td>
+            <td style="padding-left: 40px;">
+                Nombre de barrio:
+                <div><input type="text" placeholder="barrio" id="barrio"> </div><br>
+                
+                <button id="btnsave" type="button" class="btn btn-dark">Guardar</button>
+                <button id="btnmostrar" type="button" class="btn1 btn-dark">mostrar</button>
+
+            </td>
+            
+        </tr>
+    </table>
+
+    <p id="prueba" style="color:rgb(255, 217, 0); font-family: Arial; height:200px; font-size: 12px;"></p>
+   
+    <p id="info" style="color:purple; font-family: Arial; height:200px; font-size: 12px;"></p>
+    <p id="info2" style="color:red; font-family: Arial; height:200px; font-size: 12px;"></p> 
+    
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrqR5FZpdiLo58twFvoBLBjsN3dH-3RqQ&libraries=drawing"></script>
+    <script src="firebase1.js"></script>
+    <script src="monstrarzona.js"></script>
+    
+    
+
+</body>

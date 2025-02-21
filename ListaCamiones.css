@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+body {
+    background: radial-gradient(circle at top, #2a2f59, #171b3c 70%);
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+    color: whitesmoke;
+    margin: 0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de partículas animadas */
+body {
+    background: linear-gradient(to bottom, #71a5e0, #2e5d98, #0f2c6e,#0f2c6e, #031847);
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Poppins', sans-serif;
+    color: whitesmoke;
+    margin: 0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+
+@keyframes moveBackground {
+    0% {
+        transform: translateX(0) translateY(0);
+    }
+    50% {
+        transform: translateX(-50px) translateY(-50px);
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+        h1 {
+            margin: 10px 0;
+            text-align: center;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            width: 80%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 0 auto;
+            border-radius: 15px;
+        }
+        a.back-link {
+            text-decoration: none;
+            color: whitesmoke;
+            font-size: 24px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background: #1A1A1A;
+            color: whitesmoke;
+        }
+        .btn {
+            appearance: none;
+            background: linear-gradient(135deg, #6a6a6a, #838282);
+            border: none;
+            border-radius: 30px; /* Bordes redondeados más pronunciados */
+            color: #e0dddd;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 12px 25px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            width: 100%;
+            max-width: 300px;
+            margin: 15px auto;
+            display: block;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent);
+            transition: all 0.75s ease-out;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            z-index: 0;
+        }
+        
+        .btn:hover::before {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(135deg, #4f4f4f, #1A1A1A);
+            color: #ffffff;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px); /* Efecto de elevación */
+        }
+        
+        .btn:active {
+            background: #333333;
+            box-shadow: none;
+            transform: translateY(1px);
+        }
+        /* Estilos para la animación de carga */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top: 5px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

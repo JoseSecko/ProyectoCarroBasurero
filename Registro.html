@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registro de Camiones de Basura</title>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" href="styleRegistro.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    
+
+   
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <!-- Resto de tu HTML... -->
+    <header class="header">
+      <div class="container">
+      <div class="btn-menu">
+        <label for="btn-menu">☰</label>
+      </div>
+        <div class="logo">
+          <h1>Logotipo</h1>
+        </div>
+        <nav class="menu">
+          <a href="index.html">Inicio</a>
+          <a href="#">visualizar</a>
+          <a href="#">Monitorear</a>
+          <a href="#">consultar</a>
+        </nav>
+      </div>
+    </header>
+      <input type="checkbox" id="btn-menu">
+      <div class="container-menu">
+        <div class="cont-menu">
+          <nav>
+            <a href="#">Presentacion</a>
+            <a href="#">Servicios</a>
+            <a href="mapa2.html">Mapeo</a>
+            <a href="mapa.html">Rutas</a>
+            <a href="#">Registro</a>
+            <a href="#">Consultas</a>
+          </nav>
+          <label for="btn-menu">&#10006;</label>
+        </div>
+      </div>
+    <main>
+        <table>
+                <tr>
+                    <td><h1>Registro de Camiones de Basura</h1></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><label for="placa">Placa del Camión:</label></td>
+                    <td><input type="text" id="placa" ></td>
+                </tr>
+                
+                <tr>
+                    <td><label for="marca">Marca:</label></td>
+                    <td><input type="text" id="marca"></td>
+                </tr>
+
+                <tr>
+                    <td><label for="year">Año:</label></td>
+                    <td><input type="number" id="year" min="1900" max="2099" step="1" placeholder="1900"></td>
+                </tr>
+
+                <tr>
+                    <td><label for="conductor">Conductor Asignado:</label></td>
+                    <td><input type="text" id="conductor" ></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" style="text-align: center;">
+                        <button id="btnmostrar" type="button" class="btn btn-dark">Registrar Camión</button>
+                    </td>
+                </tr>
+        </table>
+    
+    </main>
+    <script src="RegistroCamiones.js"></script>
+    
+</body>
