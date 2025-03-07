@@ -109,67 +109,113 @@ $("#btnsave").on('click',()=>{
 });
 
 
-$("#btnmostrar").on('click',()=>{
+$("#btnmostrar").on('click', async () => {
   var select = document.getElementById("barrios");
   var selectedValue = select.options[select.selectedIndex].value;
 
-  var docRef = db.collection("ZonaCercado").doc(selectedValue);
+  // Obtener la placa desde la URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const placa = urlParams.get('placa');
 
-  docRef.get().then((doc) => {
-    if (doc.exists) {
-      console.log(doc.data());
-      var latitud = doc.data().coordenadaslatitudRuta;
-      var longitud = doc.data().coordenadaslongitudRuta;
+  if (!placa) {
+      console.log("No se encontró una placa en la URL.");
+      return;
+  }
 
-      var waypoints = [];
-      for (var j = 0; j < latitud.length; j++) {
-        waypoints.push({
-          location: new google.maps.LatLng(latitud[j], longitud[j]),
-          stopover: true
-        });
+  console.log("Placa seleccionada:", placa);
+
+  try {
+      // 1. Reiniciar valores previos
+      document.getElementById("horainicio").value = "";
+      document.getElementById("horafinal").value = "";
+      document.getElementById("semana").value = "";
+
+      // 2. Buscar las coordenadas en ZonaCercado
+      var zonaRef = db.collection("ZonaCercado").doc(selectedValue);
+      var zonaDoc = await zonaRef.get();
+
+      if (!zonaDoc.exists) {
+          console.log("No se encontraron coordenadas para el barrio seleccionado.");
+          return;
       }
 
+      var latitud = zonaDoc.data().coordenadaslatitudRuta;
+      var longitud = zonaDoc.data().coordenadaslongitudRuta;
+
+      // 3. Buscar en CarrosBasureros usando la placa como ID del documento
+      var carroRef = db.collection("CarrosBasureros").doc(placa);
+      var carroDoc = await carroRef.get();
+
+      if (!carroDoc.exists) {
+          console.log("No se encontraron datos para la placa seleccionada.");
+          return;
+      }
+
+      let datos = carroDoc.data().datos || [];
+      let horarioDesde = "";
+      let horarioHasta = "";
+      let diaSemana = "";
+
+      datos.forEach(item => {
+          if (item.barrio === selectedValue) {
+              horarioDesde = item.horainicio;
+              horarioHasta = item.horafinal;
+              diaSemana = item.semana;
+          }
+      });
+
+      // 4. Si no se encontraron datos para el barrio, vaciar los campos
+      if (!horarioDesde || !horarioHasta || !diaSemana) {
+          console.log("No se encontraron horarios para el barrio seleccionado en esta placa.");
+          return;
+      }
+
+      // 5. Llenar los inputs con los datos encontrados
+      document.getElementById("horainicio").value = horarioDesde;
+      document.getElementById("horafinal").value = horarioHasta;
+      document.getElementById("semana").value = diaSemana;
+
+      // 6. Dibujar la ruta en el mapa
+      var waypoints = latitud.map((lat, i) => ({
+          location: new google.maps.LatLng(lat, longitud[i]),
+          stopover: true
+      }));
+
       var request = {
-        origin: waypoints[0].location,
-        destination: waypoints[waypoints.length - 1].location,
-        waypoints: waypoints.slice(1, waypoints.length - 1),
-        travelMode: google.maps.TravelMode.DRIVING
+          origin: waypoints[0].location,
+          destination: waypoints[waypoints.length - 1].location,
+          waypoints: waypoints.slice(1, -1),
+          travelMode: google.maps.TravelMode.DRIVING
       };
-      // Limpia las rutas antiguas
+
       directionsRenderer.setMap(null);
-      // Crear un nuevo DirectionsRenderer para esta ruta
       directionsRenderer = new google.maps.DirectionsRenderer({
-        map: map,
-        suppressMarkers: true,
-        polylineOptions: {
-          strokeColor: '#000000',  // Cambiar el color de la línea
-          strokeOpacity: 1,       // Cambiar la opacidad de la línea
-          strokeWeight: 5,        // Cambiar el grosor de la línea
-          icons: [{               // Agregar efecto de línea discontinua
-            icon: { path: 'M 0,-1 0,1', scale: 1.5, strokeOpacity: 1, strokeColor: '#FFE400' },
-            offset: '0',
-            repeat: '20px'
-          }],
-        },
+          map: map,
+          suppressMarkers: true,
+          polylineOptions: {
+              strokeColor: '#000000',
+              strokeOpacity: 1,
+              strokeWeight: 5,
+              icons: [{
+                  icon: { path: 'M 0,-1 0,1', scale: 1.5, strokeOpacity: 1, strokeColor: '#FFE400' },
+                  offset: '0',
+                  repeat: '20px'
+              }],
+          },
       });
 
-      // Realizar la solicitud de direcciones
       directionsService.route(request, function(result, status) {
-        if (status === google.maps.DirectionsStatus.OK) {
-            directionsRenderer.setDirections(result);
-        } else {
-            console.error("Directions request failed due to " + status);
-        }
+          if (status === google.maps.DirectionsStatus.OK) {
+              directionsRenderer.setDirections(result);
+          } else {
+              console.error("Error en la ruta: " + status);
+          }
       });
-    
-    } else {
-      console.log("No such document!");
-    }
-  }).catch((error) => {
-    console.log("Error getting document:", error);
-  });
-});
 
+  } catch (error) {
+      console.log("Error:", error);
+  }
+});
 
 
 function InitMap() {
